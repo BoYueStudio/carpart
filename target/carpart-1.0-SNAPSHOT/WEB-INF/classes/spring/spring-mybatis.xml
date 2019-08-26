@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- mybatis的数据源交给spring的ioc容器来创建 -->
+	<!-- 读取工程下面的properties文件 -->
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+         <list>
+            <value>classpath*:jdbc/*.properties</value>
+         </list>
+      </property>
+   </bean>
+
+
+	<!--实例化数据库连接池、数据源 -->
+	<!-- 配置mybatis的数据源 使用的是dbcp数据库连接池 常用的数据库连接池 c3p0 dbcp druid -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.DriverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!-- 既然有了数据源，那么就可以让spring容器来创建sqlSessionFactory 需要加载mybatis.xml以及mapper.xml，还需要数据源 -->
+
+	<!-- sqlSessinFactory在mybatis单独使用的时候 咱们封装了一个工具类来获取该单例，但是和spring整合之后 完全交给spring的ioc容器来实例化该对象 
+		3个参数：1:mybatis的核心配置文件在哪 2:mybatis的mapper文件在哪 3:数据源是谁 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 加载mybatis的核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis/mybatis.xml" />
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 映射文件位置 -->
+		<property name="mapperLocations" value="classpath:com/xiupeilian/carpart/mapper/*.xml"></property>
+		<!-- 配置分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 有了sqlSessionFactory 就可以open一个sqlSession， 那么有了sqlSession,就可以让spring提前创建每一个mapper接口对应的代理对象 -->
+
+	<!-- mybatis-spring-1.3.0.jar,提供了 自动生成mapper代理对象的机制， 只需要配置mapper接口的包路径 和sqlsessionfactory -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xiupeilian.carpart.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<!-- 配置spring的注解扫描器，扫描service层 -->
+	<!-- 配置spring的注解扫描器，注意 不扫描controller注解 -->
+	<context:component-scan base-package="com.xiupeilian.carpart">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+
+	<!-- 待定:事务管理 aop待完成 -->
+	<!-- 待定:事务管理 aop待完成 -->
+	<!-- spring提供了声明式的事务管理机制 -->
+	<!-- 配置事务管理器,让spring的事务管理器去对事务进行统一管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+
+
+
+
+	<!-- 切面增强 spring提供了自带的事务增强类 tx 设置一下tx事务增强类的传播特性 -->
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 传播行为 tx method指定 切面路径下 方法名 name=xxx 此次的事务传播行为 required 需要使用事务进行统一管理 
+				read-only=true 只读模式，查询行为，不需要事务进行管理 对于增删改开头的方法，使用事务进行管理 对于查询开头的方法，只读 -->
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+  <!-- 设置切面   把事务管理的切面设置在service实现类这一层-->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice"
+			pointcut="execution(* com.xiupeilian.carpart.service.impl.*.*(..))" />
+	</aop:config>
+
+</beans>

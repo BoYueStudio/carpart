@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 该文件是Mybatis的核心配置文件 -->
+
+
+
+<configuration>
+
+<typeAliases>
+<!--批量定义别名  -->
+<package name="com.xiupeilian.carpart.model"/>
+<package name="com.xiupeilian.carpart.vo"/>
+</typeAliases>
+
+<!-- 由于得需要spring来创建和管理数据源，所以Mybatis就不需要创建数据源了
+而且将来spring来负责实例化sqlSessionFactory以及各个mapper接口的动态代理对象
+此处不需要加载mapper文件
+ -->
+
+</configuration>

@@ -1,0 +1,109 @@
+@charset "utf-8";
+@font-face {font-weight: normal;font-style: normal;}
+*{ padding:0; margin:0;}
+ul li{ list-style:none;}
+a{text-decoration:none;}
+img{ border:none;}
+input{border:none; background:none;}
+textarea{outline:0;}
+.clear{clear:both;}
+.fl{ float:left;}
+.fr{ float:right;}
+.hide,.popup{ display:none;}
+/*notprice*/
+.yy-icon{ display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../images/yy-icon.png);}
+.yy-tup {width:9px; height:4px; background-position: -185px -717px}.yy-tyh {width:33px; height:30px; background-position: -267px -100px}
+#hnav{ width:auto; height:50px;float:left; margin-left:20px;}#hnav li{ width:auto; height:50px; float:left;}
+#hnav li a{ padding:0 30px; line-height:50px; display:block; font-size:14px; transition:background-color ease .3s}
+#hnav li a:hover{background:#fff; text-decoration:none;}
+#hnav li a.active{ background-color:#fff;}
+#hnav li.hnavmore a{ position:relative;}
+#hnav li .yy-tup{transition:transform ease .3s;-webkit-transition:-webkit-transform ease .3s}
+#hnav li.hnavmore a span{ left:8px;top:-2px; position:relative;}
+#hnav li.hnavmore ul{ padding:0px 0 10px 0;position:absolute; height:auto; width:97px; background:#fff; display:none}
+#hnav li.hnavmore li{ height:28px; float:left; width:100%;}
+#hnav li.hnavmore li a{ height:28px; line-height:28px; font-size:12px; padding:0; text-align:center;}
+#hnav li.hnavmore:hover span{transform:rotate(180deg);-webkit-transform:rotate(180deg)}
+#hnav li.hnavmore:hover a{background-color:#fff;}
+#hnav li.hnavmore li a:hover{  background:#ebebeb;}
+#hnav li.hnavmore:hover ul{ display:block;}
+#navuplpad{ margin-left:20px;}
+#hnav li#navuplpad a{color:#ffffff;}
+#navuplpad a span{ margin-right:8px;}
+#mnnav{ display:none}
+#mnnavlabel{ height:50px; line-height:50px;;}
+#mnnavlabel span{ top:20px; position:relative;}
+
+/*历史记录*/
+.yy-icon1{ display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../images/yy-icon1.png);}
+.yy-tup {width:9px; height:4px; background-position: -185px -717px}.yy-tyh {width:33px; height:30px; background-position: -267px -100px}
+#his{width:auto;height:45px;float:left; margin-left:20px;}
+#his li{width:auto;height:45x; float:left;}
+#his li a{ padding:0px;line-height:45px;display:block; font-size:14px; transition:background-color ease .3s}
+#his li a:hover{background:#fff; text-decoration:none;}
+#his li a.active{ background-color:#fff;}
+#his li.hismore a{ position:relative;}
+#his li .yy-tup{transition:transform ease .3s;-webkit-transition:-webkit-transform ease .3s}
+#his li.hismore a span{ left:8px;top:-2px; position:relative;}
+#his li.hismore ul{ padding:0px;position:absolute;height:auto; width:94px; background:#fff; display:none}
+#his li.hismore li{ height:28px; float:left; width:100%;}
+#his li.hismore li a{ height:28px; line-height:28px; font-size:12px; padding:0; text-align:center;}
+#his li.hismore:hover span{transform:rotate(180deg);-webkit-transform:rotate(180deg)}
+#his li.hismore:hover a{background-color:#c31103;}
+#his li.hismore:hover li a{background-color:#fff;}
+#his li.hismore li a:hover{background:#ebebeb;}
+#his li.hismore:hover ul{ display:block;}
+#navuplpad{ margin-left:20px;}
+#his li#navuplpad a{color:#000;}
+#navuplpad a span{ margin-right:8px;}
+#mnnav{ display:none}
+#mnnavlabel{ height:50px; line-height:50px;;}
+#mnnavlabel span{ top:20px; position:relative;}
+
+
+/*注册页*/
+#sheng{width:263px;height:40px;font-size:14px;font-family:'微软雅黑';color:#494848;border:1px solid #cdcdcd;float:left;margin-right:10px;}
+#sheng li{width:263px;height:40px;float:left;}
+#sheng li a{width:263px;padding:0px; line-height:40px; display:block;color:#494848;font-size:14px; transition:background-color ease .3s}
+#sheng li a:hover{color:#494848;text-decoration:none;}
+#sheng li.hnavmore a{position:relative;padding-left:13px;width:250px;}
+#sheng li .yy-tup{transition:transform ease .3s;-webkit-transition:-webkit-transform ease .3s}
+#sheng li.hnavmore a span{ right:10px;top:18px; position:relative;}
+#sheng li.hnavmore ul{position:absolute;display:none;background:#fff;z-index:9999;width:263px;border:1px solid #cdcdcd;margin:0px;padding:0px;height:200px;overflow:visible; overflow-x:hidden}
+#sheng li.hnavmore li{float:left;height:40px;}
+#sheng li.hnavmore li a{font-size:12px;text-align:left;height:40px;}
+#sheng li.hnavmore:hover span{transform:rotate(180deg);-webkit-transform:rotate(180deg)}
+#sheng li.hnavmore:hover a{background-color:#fff;width:250px;height:40px;}
+#sheng li.hnavmore li a:hover{width:250px;color:#494848; background:#ebebeb;}
+#sheng li.hnavmore:hover ul{ display:block;}
+#navuplpad{}
+#sheng li#navuplpad a{color:#ffffff;}
+#navuplpad a span{ margin-right:8px;}
+#mnnav{ display:none}
+#mnnavlabel{ height:50px; line-height:50px;;}
+#mnnavlabel span{ top:20px; position:relative;}
+
+/*公共货架-按发布时间*/
+#good1{width:130px;height:40px;font-size:14px;font-family:'微软雅黑';color:#494848;border:1px solid #cdcdcd;border-right:none;float:left;}
+#good1 li{width:130px;height:40px;float:left;background:#fff;}
+#good1 li a{width:130px;padding:0px;line-height:40px;display:block;color:#494848;font-size:14px; transition:background-color ease .3s}
+#good1 li a:hover{color:#494848;text-decoration:none;}
+#good1 li.hnavmore a{position:relative;padding-left:30px;width:100px;}
+#good1 li .yy-tup{transition:transform ease .3s;-webkit-transition:-webkit-transform ease .3s}
+#good1 li.hnavmore a span{ right:10px;top:18px; position:relative;}
+#good1 li.hnavmore ul{position:absolute;display:none;background:#fff;z-index:9999;width:130px;border:1px solid #cdcdcd;}
+#good1 li.hnavmore li{float:left;height:40px;}
+#good1 li.hnavmore li a{font-size:12px;text-align:left;height:40px;}
+#good1 li.hnavmore:hover span{transform:rotate(180deg);-webkit-transform:rotate(180deg)}
+#good1 li.hnavmore:hover a{background-color:#fff;width:100px;height:40px;}
+#good1 li.hnavmore li a:hover{width:100px;color:#494848; background:#ebebeb;}
+#good1 li.hnavmore:hover ul{ display:block;}
+#navuplpad{}
+#good1 li#navuplpad a{color:#ffffff;}
+#navuplpad a span{ margin-right:8px;}
+#mnnav{ display:none}
+#mnnavlabel{ height:50px; line-height:50px;;}
+#mnnavlabel span{ top:20px; position:relative;}
+
+
+.cur-span{font-style: normal;}

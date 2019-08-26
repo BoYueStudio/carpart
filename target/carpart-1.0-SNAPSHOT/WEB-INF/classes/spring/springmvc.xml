@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- 开启注解驱动 使用注解方式来开发springmvc 它会加载注解的处理器映射器和处理器适配器 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 配置注解扫描器的路径 扫描器会扫描到指定包路径下所有的类,一旦该类标识controller注解，就会被实例化 一旦方法被标识了requestMapping注解，会把url路径和方法的类路径，保存到 
+		处理器映射器当中 -->
+	<context:component-scan
+		base-package="com.xiupeilian.carpart.controller"></context:component-scan>
+
+	<!-- 基于jsp的视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!--配置springmvc的拦截器-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/js/**"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/css/**"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/html/**"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/images/**"></mvc:exclude-mapping>
+			<bean class="com.xiupeilian.carpart.session.SessionIntercepter"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!--设置url-pattern 为/ 是 要把静态资源放行 -->
+	<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+	<mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+	<mvc:resources mapping="/html/**" location="/html/"></mvc:resources>
+	<mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+
+	
+	
+
+</beans>

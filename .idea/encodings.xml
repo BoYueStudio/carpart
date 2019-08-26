@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/constant" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/service" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/servlet" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/task" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/util/ImageUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/util/SHA1Util.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/vo/LoginVo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xiupeilian/carpart/vo/RegisterVo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/jdbc/jdbc.properties" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/jdbc/mail.properties" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/mybatis.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/spring/spring-mail.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/spring/spring-redis.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/spring/springmvc.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/exception" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/index" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login/forgetPassword.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login/login.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login/phoneLogin.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login/register.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/staff/staffList.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/bootstrap.min.js" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiupeilian.carpart.mapper.CollectionsMapper" >
+  <resultMap id="BaseResultMap" type="com.xiupeilian.carpart.model.Collections" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="colletor_id" property="colletorId" jdbcType="INTEGER" />
+    <result column="items_id" property="itemsId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_status" property="deleteStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, colletor_id, items_id, create_time, delete_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collections
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collections
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiupeilian.carpart.model.Collections" >
+    insert into collections (id, colletor_id, items_id, 
+      create_time, delete_status)
+    values (#{id,jdbcType=INTEGER}, #{colletorId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiupeilian.carpart.model.Collections" >
+    insert into collections
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="colletorId != null" >
+        colletor_id,
+      </if>
+      <if test="itemsId != null" >
+        items_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="colletorId != null" >
+        #{colletorId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null" >
+        #{deleteStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiupeilian.carpart.model.Collections" >
+    update collections
+    <set >
+      <if test="colletorId != null" >
+        colletor_id = #{colletorId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        items_id = #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status = #{deleteStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiupeilian.carpart.model.Collections" >
+    update collections
+    set colletor_id = #{colletorId,jdbcType=INTEGER},
+      items_id = #{itemsId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delete_status = #{deleteStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
+  <!-- springmvc的核心控制器dispatcherServlet -->
+   <servlet>
+  <servlet-name>dispactherServlet</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:spring/springmvc.xml</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>dispactherServlet</servlet-name>
+  <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  
+   <!-- 统一编码的过滤器   对Post请求进行编码-->
+   <filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	 <!-- 配置上下文参数，指定spring监听器读取配置文件的位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring/spring-*.xml
+		</param-value>
+	</context-param>
+
+
+
+	<!-- 配置spring监听器 ,加载上下文参数,监听springIOC容器的创建工作 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+</web-app>

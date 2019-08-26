@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{margin:0px auto;padding:0px auto;font-size:12px;color:#4f4e4e;font-family:"微软雅黑",Arial;}
+li{list-style:none;}
+img{border:none;}
+a{text-decoration:none;color:#494848;}
+button{outline:none;}
+a:hover{text-decoration:underline;}
+.clear{clear:both;}
+.wid{width:1000px;margin:0px auto;padding:0px auto;}
+.wid2{width:1200px;margin:0px auto;padding:0px auto;overflow:hidden;}
+.h3{font-size:18px;font-weight:normal;}
+.fl{float:left;}
+.fr{float:right;}
+.bg_color1{background:#e6e6e0;}
+.bg_color2{background:#d6d1bf;}
+.bg_color3{background:#efeeea;}
+.bg_color4{background:#f1f1f1;}
+.bg_color5{background:#c31103;font-size:14px;color:#fff;}
+h3{font-size:16px;font-weight:normal;}
+.color1{color:#097c25;}<!--绿色-->
+.color2{color:#eb6100;}<!--橙色-->
+.color3{color:#c30d23;}<!--红色-->
+.color4{color:#1d2088;}<!--蓝色-->
+.color5{color:#e8c500;}<!--黄色-->
+.color6{color:#fff;}
+.mar2{margin-left:10px;}
+.mar3{margin-left:20px;}
+.mar4{margin-top:145px;}
+.mar5{margin-top:25px;}
+.mar6{margin-right:10px;}
+.mar7{margin-bottom:10px;}
+.pad1{padding-top:20px;}
+.fixd{position:fixed;top:0px;background:#fff;}
+.border_end{border-bottom:1px solid #cdcdcd;}
+.ht1{height:32px;}
+.ofh{overflow:hidden}
+.pr{position:relative}
+.fixed{position:fixed;top:0;z-index:999}
+.mar5{margin-top:25px;}
+
+
+.pagebody7{margin:0px auto;padding:0px auto;font-family:"微软雅黑";position:relative;top:0px;width:1000px;}
+.pagebody7_bg{width:210px;background:#c30d24;line-height:42px;text-align:center;color:#fff;font-size:18px;margin-top:10px;}
+.pagebody7_input{width:210px;border:1px solid #cdcdcd;float:right;}
+.pagebody7_name{width:160px;padding-left:10px;height:32px;border:none;float:right;color:#aaa;}
+.pagebody7_btn{width:32px;height:32px;background:url(../images/big.png) no-repeat 0px 10px;float:right;border:none; cursor:pointer;}
+.w1190 .content-wrapper,.w1190 .fl-wrapper,.w1190 .header-wrapper,.w1190 .mn-wrapper,.w1190 .sn-container{width:1000px;margin:0 auto}
+.cb-nav-wrapper{margin-top:30px;height:50px;}
+.cb-nav{width:1000px;background:#fff;}
+.cb-nav .content{position:relative;background:#fff;padding-bottom:45px;border-bottom:5px solid #444}
+.cb-nav .content h3{margin:0px;padding:0px;color:#000;background:none;float:left;font-size:18px;position:absolute;top:8px;}
+.cb-nav .content h3 b{font-size:12px;margin:0px 25px 0px 75px;}
+.cb-nav .content h3 span{font-size:12px;color:#666;font-weight:normal;margin-left:8px;}
+.cb-nav .content ul{position:absolute;top:0px;margin-left:260px;}
+.cb-nav .content a{font-size:14px;margin-left:1px;color:#888;transition:color .1s ease;transition:background 0.1s;padding:1px 6px;text-align:left;}
+.cb-nav .content a:hover{ text-decoration:none;color:#fff;background:#c30d24;padding:1px 6px;}
+.cb-nav .content .cur{color:#fff;background:#c30d24;padding:1px 6px;}
+.brand-title{margin:90px 0 10px;color:#333;font-size:14px}
+.car-brand-item{border:none;margin-bottom:15px;}
+.car-brand-item table{margin-bottom:-1px;width:100%;}
+.car-brand-item td,.car-brand-item th{border-right:1px solid #ddd;border-bottom:1px solid #ddd;vertical-align:middle;}
+.car-brand-item th{height:30px;font-size:18px;line-height:30px;}
+.brand-char{width:190px;text-align:center;background:#c30d24;color:#fff;}
+.brand-logo{width:190px;text-align:center;border-right:1px solid #ddd}
+.brand-logo{padding:15px 0;background:#fff;border-left:1px solid #ddd;}
+.brand-logo .brand-img{display:block;margin:0 auto;width:130px;height:130px;line-height:130px}
+.brand-logo .brand-img img{width:100%;vertical-align:middle}
+.brand-logo p{color:#666;font-size:18px}
+.brand-list{padding:20px 20px 20px 40px}
+.brand-list a{color:#666}
+.brand-list a:hover{color:#d10000}
+.brand-list dt{display:block;padding:0 0 15px 20px;font-weight:700;color:#666}
+.brand-list dd{display:inline-block;padding:0 20px;border-right:1px solid #666;margin-left:0px;margin-bottom:10px;line-height:1;*display:inline;*zoom:1}
+.brand-list .last{border:none;}
+.btm{background:#f2f2f2;border-top:1px solid #ddd}
+.btmbar{height:80px;padding:39px 0 25px;width:1000px;margin:0 auto}
+.queding{margin:0px auto;padding:0px auto;text-align:center;width:267px;height:45px;line-height:40px;font-size:18px;font-family:'微软雅黑';color:#fff;background:#c30d23;border:none; transition:background 0.3s;}
+.queding:hover{background:#a20115;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

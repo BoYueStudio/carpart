@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiupeilian.carpart.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xiupeilian.carpart.model.Menu" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="INTEGER" />
+    <result column="IS_SHOW" property="isShow" jdbcType="INTEGER" />
+    <result column="MENU_KEY" property="menuKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PARENT_ID, MENU_NAME, URL, LOGO, SEQ, IS_SHOW, MENU_KEY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiupeilian.carpart.model.Menu" >
+    insert into menu (ID, PARENT_ID, MENU_NAME, 
+      URL, LOGO, SEQ, IS_SHOW, 
+      MENU_KEY)
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER}, 
+      #{menuKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiupeilian.carpart.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="menuName != null" >
+        MENU_NAME,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="isShow != null" >
+        IS_SHOW,
+      </if>
+      <if test="menuKey != null" >
+        MENU_KEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="menuKey != null" >
+        #{menuKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiupeilian.carpart.model.Menu" >
+    update menu
+    <set >
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        IS_SHOW = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="menuKey != null" >
+        MENU_KEY = #{menuKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiupeilian.carpart.model.Menu" >
+    update menu
+    set PARENT_ID = #{parentId,jdbcType=INTEGER},
+      MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=INTEGER},
+      IS_SHOW = #{isShow,jdbcType=INTEGER},
+      MENU_KEY = #{menuKey,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findMenu" parameterType="int" resultMap="BaseResultMap">
+    SELECT menu.* FROM sys_user,role,role_menu,menu WHERE sys_user.`ID`=#{id}
+     AND sys_user.`ROLE_ID`=role.`ID` AND role.`ID`=role_menu.`role_id`
+      AND role_menu.`menu_id`=menu.`ID`AND menu.`IS_SHOW`=1 ORDER BY seq ASC
+  </select>
+</mapper>

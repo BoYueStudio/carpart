@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiupeilian.carpart.mapper.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.xiupeilian.carpart.model.Company" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="county" property="county" jdbcType="INTEGER" />
+    <result column="tel1" property="tel1" jdbcType="VARCHAR" />
+    <result column="tel2" property="tel2" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="main" property="main" jdbcType="VARCHAR" />
+    <result column="single_brand" property="singleBrand" jdbcType="VARCHAR" />
+    <result column="single_parts" property="singleParts" jdbcType="VARCHAR" />
+    <result column="prime" property="prime" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="picurl1" property="picurl1" jdbcType="VARCHAR" />
+    <result column="picurl2" property="picurl2" jdbcType="VARCHAR" />
+    <result column="picurl3" property="picurl3" jdbcType="VARCHAR" />
+    <result column="delete_status" property="deleteStatus" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="zone1" property="zone1" jdbcType="VARCHAR" />
+    <result column="zone2" property="zone2" jdbcType="VARCHAR" />
+    <result column="reserved_field1" property="reservedField1" jdbcType="VARCHAR" />
+    <result column="reserved_field2" property="reservedField2" jdbcType="VARCHAR" />
+    <result column="reserved_field3" property="reservedField3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xiupeilian.carpart.model.Company" extends="BaseResultMap" >
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_code, company_name, address, province, city, county, tel1, tel2, phone, 
+    main, single_brand, single_parts, prime, leader, create_time, picurl1, picurl2, picurl3, 
+    delete_status, qq, zone1, zone2, reserved_field1, reserved_field2, reserved_field3
+  </sql>
+  <sql id="Blob_Column_List" >
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiupeilian.carpart.model.Company" >
+    insert into company (id, company_code, company_name, 
+      address, province, city, 
+      county, tel1, tel2, 
+      phone, main, single_brand, 
+      single_parts, prime, leader, 
+      create_time, picurl1, picurl2, 
+      picurl3, delete_status, qq, 
+      zone1, zone2, reserved_field1, 
+      reserved_field2, reserved_field3, memo
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{county,jdbcType=INTEGER}, #{tel1,jdbcType=VARCHAR}, #{tel2,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{main,jdbcType=VARCHAR}, #{singleBrand,jdbcType=VARCHAR}, 
+      #{singleParts,jdbcType=VARCHAR}, #{prime,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{picurl1,jdbcType=VARCHAR}, #{picurl2,jdbcType=VARCHAR}, 
+      #{picurl3,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR}, 
+      #{zone1,jdbcType=VARCHAR}, #{zone2,jdbcType=VARCHAR}, #{reservedField1,jdbcType=VARCHAR}, 
+      #{reservedField2,jdbcType=VARCHAR}, #{reservedField3,jdbcType=VARCHAR}, #{memo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiupeilian.carpart.model.Company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="tel1 != null" >
+        tel1,
+      </if>
+      <if test="tel2 != null" >
+        tel2,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="main != null" >
+        main,
+      </if>
+      <if test="singleBrand != null" >
+        single_brand,
+      </if>
+      <if test="singleParts != null" >
+        single_parts,
+      </if>
+      <if test="prime != null" >
+        prime,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="picurl1 != null" >
+        picurl1,
+      </if>
+      <if test="picurl2 != null" >
+        picurl2,
+      </if>
+      <if test="picurl3 != null" >
+        picurl3,
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="zone1 != null" >
+        zone1,
+      </if>
+      <if test="zone2 != null" >
+        zone2,
+      </if>
+      <if test="reservedField1 != null" >
+        reserved_field1,
+      </if>
+      <if test="reservedField2 != null" >
+        reserved_field2,
+      </if>
+      <if test="reservedField3 != null" >
+        reserved_field3,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=INTEGER},
+      </if>
+      <if test="tel1 != null" >
+        #{tel1,jdbcType=VARCHAR},
+      </if>
+      <if test="tel2 != null" >
+        #{tel2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null" >
+        #{main,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBrand != null" >
+        #{singleBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="singleParts != null" >
+        #{singleParts,jdbcType=VARCHAR},
+      </if>
+      <if test="prime != null" >
+        #{prime,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picurl1 != null" >
+        #{picurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl2 != null" >
+        #{picurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl3 != null" >
+        #{picurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        #{deleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="zone1 != null" >
+        #{zone1,jdbcType=VARCHAR},
+      </if>
+      <if test="zone2 != null" >
+        #{zone2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField1 != null" >
+        #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null" >
+        #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null" >
+        #{reservedField3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiupeilian.carpart.model.Company" >
+    update company
+    <set >
+      <if test="companyCode != null" >
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=INTEGER},
+      </if>
+      <if test="tel1 != null" >
+        tel1 = #{tel1,jdbcType=VARCHAR},
+      </if>
+      <if test="tel2 != null" >
+        tel2 = #{tel2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null" >
+        main = #{main,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBrand != null" >
+        single_brand = #{singleBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="singleParts != null" >
+        single_parts = #{singleParts,jdbcType=VARCHAR},
+      </if>
+      <if test="prime != null" >
+        prime = #{prime,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picurl1 != null" >
+        picurl1 = #{picurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl2 != null" >
+        picurl2 = #{picurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl3 != null" >
+        picurl3 = #{picurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status = #{deleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="zone1 != null" >
+        zone1 = #{zone1,jdbcType=VARCHAR},
+      </if>
+      <if test="zone2 != null" >
+        zone2 = #{zone2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField1 != null" >
+        reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null" >
+        reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null" >
+        reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiupeilian.carpart.model.Company" >
+    update company
+    set company_code = #{companyCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      county = #{county,jdbcType=INTEGER},
+      tel1 = #{tel1,jdbcType=VARCHAR},
+      tel2 = #{tel2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      main = #{main,jdbcType=VARCHAR},
+      single_brand = #{singleBrand,jdbcType=VARCHAR},
+      single_parts = #{singleParts,jdbcType=VARCHAR},
+      prime = #{prime,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      picurl1 = #{picurl1,jdbcType=VARCHAR},
+      picurl2 = #{picurl2,jdbcType=VARCHAR},
+      picurl3 = #{picurl3,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=VARCHAR},
+      zone1 = #{zone1,jdbcType=VARCHAR},
+      zone2 = #{zone2,jdbcType=VARCHAR},
+      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiupeilian.carpart.model.Company" >
+    update company
+    set company_code = #{companyCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      county = #{county,jdbcType=INTEGER},
+      tel1 = #{tel1,jdbcType=VARCHAR},
+      tel2 = #{tel2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      main = #{main,jdbcType=VARCHAR},
+      single_brand = #{singleBrand,jdbcType=VARCHAR},
+      single_parts = #{singleParts,jdbcType=VARCHAR},
+      prime = #{prime,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      picurl1 = #{picurl1,jdbcType=VARCHAR},
+      picurl2 = #{picurl2,jdbcType=VARCHAR},
+      picurl3 = #{picurl3,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=VARCHAR},
+      zone1 = #{zone1,jdbcType=VARCHAR},
+      zone2 = #{zone2,jdbcType=VARCHAR},
+      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findCompanyByName" parameterType="string" resultMap="BaseResultMap">
+    select * from company where company_name=#{value}
+
+  </select>
+</mapper>

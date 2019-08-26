@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiupeilian.carpart.mapper.CityMapper" >
+  <resultMap id="BaseResultMap" type="com.xiupeilian.carpart.model.City" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Parent_Id" property="parentId" jdbcType="INTEGER" />
+    <result column="Short_Name" property="shortName" jdbcType="VARCHAR" />
+    <result column="LevelType" property="leveltype" jdbcType="CHAR" />
+    <result column="City_Code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="Zip_Code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="Merger_Name" property="mergerName" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="VARCHAR" />
+    <result column="Lat" property="lat" jdbcType="VARCHAR" />
+    <result column="Pinyin" property="pinyin" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, Name, Parent_Id, Short_Name, LevelType, City_Code, Zip_Code, Merger_Name, lng, 
+    Lat, Pinyin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from city
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiupeilian.carpart.model.City" >
+    insert into city (id, Name, Parent_Id, 
+      Short_Name, LevelType, City_Code, 
+      Zip_Code, Merger_Name, lng, 
+      Lat, Pinyin)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{shortName,jdbcType=VARCHAR}, #{leveltype,jdbcType=CHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=VARCHAR}, #{mergerName,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, 
+      #{lat,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiupeilian.carpart.model.City" >
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="parentId != null" >
+        Parent_Id,
+      </if>
+      <if test="shortName != null" >
+        Short_Name,
+      </if>
+      <if test="leveltype != null" >
+        LevelType,
+      </if>
+      <if test="cityCode != null" >
+        City_Code,
+      </if>
+      <if test="zipCode != null" >
+        Zip_Code,
+      </if>
+      <if test="mergerName != null" >
+        Merger_Name,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        Lat,
+      </if>
+      <if test="pinyin != null" >
+        Pinyin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        #{leveltype,jdbcType=CHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null" >
+        #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiupeilian.carpart.model.City" >
+    update city
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        Parent_Id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="shortName != null" >
+        Short_Name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        LevelType = #{leveltype,jdbcType=CHAR},
+      </if>
+      <if test="cityCode != null" >
+        City_Code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        Zip_Code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null" >
+        Merger_Name = #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        Lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        Pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiupeilian.carpart.model.City" >
+    update city
+    set Name = #{name,jdbcType=VARCHAR},
+      Parent_Id = #{parentId,jdbcType=INTEGER},
+      Short_Name = #{shortName,jdbcType=VARCHAR},
+      LevelType = #{leveltype,jdbcType=CHAR},
+      City_Code = #{cityCode,jdbcType=VARCHAR},
+      Zip_Code = #{zipCode,jdbcType=VARCHAR},
+      Merger_Name = #{mergerName,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      Lat = #{lat,jdbcType=VARCHAR},
+      Pinyin = #{pinyin,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findCitiesByParentId" parameterType="int"
+          resultMap="BaseResultMap">
+
+    select * from city where parent_id=#{parentId}
+  </select>
+</mapper>
