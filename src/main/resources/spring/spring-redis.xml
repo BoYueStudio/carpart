@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+
+<!-- 创建一个jedisCluster连接池的配置对象 -->
+<!-- 配置JedisPoolConfig实例 -->
+   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+      <property name="maxTotal" value="30"></property>
+      <property name="maxWaitMillis" value="30000"></property>
+
+   </bean>
+   
+ <!-- Redis集群的节点信息 -->
+   <bean id="redisClusterConfig" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+      <property name="maxRedirects" value="8"></property>
+      <property name="clusterNodes">
+         <set>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis0.port}"></constructor-arg>
+            </bean>
+
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis1.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis2.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis3.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis4.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis5.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis8.port}"></constructor-arg>
+            </bean>
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+               <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+               <constructor-arg name="port" value="${redis9.port}"></constructor-arg>
+            </bean>
+         </set>
+      </property>
+   </bean>
+   
+   <!-- jedis连接工厂  spring提供的工厂类，生产jedis连接的，如果是Jediscluster，需要通过有参构造器传入redis cluster
+   的集群信息
+    -->
+   <!-- 配置JedisConnectionFactory -->
+   <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+      <constructor-arg name="clusterConfig" ref="redisClusterConfig" />
+      <property name="poolConfig" ref="poolConfig"/>
+ 
+   </bean>
+   
+   <!-- 
+   1：两种方式使用jedis 
+     第一种使用原生的jedis对象,jedis.get set
+  2:使用spring提供的redis操作的模板类，封装了一些方法(看不到原生的方法)
+   	 需要指定key以及value的序列化方式
+    
+   -->
+   
+   
+   <!-- 配置RedisTemplate -->
+   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+      <property name="connectionFactory" ref="jedisConnectionFactory" />
+      <property name="keySerializer" >
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+      </property>
+      <property name="valueSerializer" >
+         <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+      </property>
+      <property name="hashKeySerializer">
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+      </property>
+      <property name="hashValueSerializer">
+         <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+      </property>
+   </bean>
+
+   <!-- 配置spring-session 超时时间 秒 -->
+   <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+      <property name="maxInactiveIntervalInSeconds" value="1800"></property>
+   </bean>
+   
+   
+
+
+</beans>
